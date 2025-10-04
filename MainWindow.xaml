@@ -1,0 +1,59 @@
+﻿<!-- Определение главного окна приложения -->
+<Window x:Class="CSharp_Image_Manipulator.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Редактор изображений с многопоточностью" Height="600" Width="900">
+    <!-- Основная сетка для размещения элементов -->
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <!-- Панель для слайдера -->
+            <RowDefinition Height="Auto"/>
+            <!-- Метка имени файла -->
+            <RowDefinition Height="*"/>
+            <!-- Область изображения -->
+            <RowDefinition Height="Auto"/>
+            <!-- Панель кнопок -->
+            <RowDefinition Height="Auto"/>
+            <!-- Статус-бар -->
+        </Grid.RowDefinitions>
+
+        <!-- Панель управления количеством потоков -->
+        <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="10">
+            <Label Content="Количество потоков:" Width="150"/>
+            <!-- Метка для слайдера -->
+            <Slider x:Name="ThreadsSlider" Minimum="1" Maximum="8" Value="1" Width="100" 
+                    ValueChanged="ThreadsSlider_ValueChanged" TickFrequency="1" IsSnapToTickEnabled="True"/>
+            <!-- Слайдер для выбора потоков -->
+            <Label x:Name="ThreadsLabel" Content="Потоков: 1" Margin="10,0"/>
+            <!-- Метка количества потоков -->
+        </StackPanel>
+
+        <!-- Метка имени файла -->
+        <Label x:Name="FilenameLabel" Grid.Row="1" Content="" Margin="10"/>
+
+        <!-- Область отображения изображения -->
+        <Image x:Name="ImageDisplay" Grid.Row="2" Stretch="Uniform" Margin="10"/>
+
+        <!-- Панель кнопок фильтров -->
+        <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
+            <Button x:Name="BrowseButton" Content="Открыть" Click="BrowseButton_OnClick" Margin="5" Width="100"/>
+            <!-- Кнопка открытия файла -->
+            <Button x:Name="GrayscaleButton" Content="Оттенки серого" Click="GrayscaleButton_OnClick" Margin="5" Width="100"/>
+            <!-- Кнопка оттенков серого -->
+            <Button x:Name="InvertColorButton" Content="Инвертировать цвета" Click="InvertColorButton_OnClick" Margin="5" Width="100"/>
+            <!-- Кнопка инверсии цветов -->
+            <Button x:Name="SepiaEffectButton" Content="Сепия" Click="SepiaEffectButton_OnClick" Margin="5" Width="100"/>
+            <!-- Кнопка эффекта сепии -->
+            <Button x:Name="OriginalButton" Content="Исходное" Click="OriginalButton_OnClick" Margin="5" Width="100"/>
+            <!-- Кнопка возврата к оригиналу -->
+            <Button x:Name="SaveImage" Content="Сохранить" Click="SaveImage_OnClick" Margin="5" Width="100"/>
+            <!-- Кнопка сохранения -->
+        </StackPanel>
+
+        <!-- Статус-бар -->
+        <Label x:Name="StatusLabel" Grid.Row="4" Content="Готов к работе" 
+               HorizontalAlignment="Center" Margin="10" Foreground="Blue"/>
+        <!-- Метка статуса -->
+    </Grid>
+</Window>
